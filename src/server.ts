@@ -1,5 +1,6 @@
 import express from 'express';
 import routes from './routes/route';
+import './database/prisma'
 require('dotenv').config();
 
 const port = process.env.PORT;
