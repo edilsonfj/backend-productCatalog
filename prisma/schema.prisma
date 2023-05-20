@@ -8,39 +8,46 @@ datasource db {
 }
 
 model Product {
-  id          Int         @id
-  categories  Category[]
-  name        String
-  description String
-  barcode     String
-  price       Float
-  promotion   Promotion[]
-  createdAt   DateTime
-  updatedAt   DateTime
-  deletedAt   DateTime
+  id           String     @id
+  categoryName Category   @relation(fields: [category], references: [name])
+  category     String
+  name         String
+  description  String
+  barcode      String
+  price        Float
+  promotion    Promotion? @relation(fields: [discount], references: [discount])
+  discount     Int
+  stock        Int
+  image1       String?
+  image2       String?
+  image3       String?
+  image4       String?
+  image5       String?
+  createdAt    DateTime
+  updatedAt    DateTime?
+  deletedAt    DateTime?
 
   @@map("products")
 }
 
 model Category {
-  id        Int       @id
-  products  Product[]
-  name      String
+  id        String    @id
+  name      String    @unique
   createdAt DateTime
-  updatedAt DateTime
-  deletedAt DateTime
+  updatedAt DateTime?
+  deletedAt DateTime?
+  products  Product[]
 
   @@map("categories")
 }
 
 model Promotion {
-  id        Int       @id
-  products  Product[]
-  name      String
-  discount  Float
+  id        String    @id
+  discount  Int       @unique
   createdAt DateTime
-  updatedAt DateTime
-  deletedAt DateTime
+  updatedAt DateTime?
+  deletedAt DateTime?
+  products  Product[]
 
   @@map("promotions")
 }

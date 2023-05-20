@@ -1,12 +1,12 @@
 export class Category {
-    id: number;
+    id: string;
     name: string;
-    created_at: Date;
-    updated_at: Date | null;
-    deleted_at: Date | null;
+    createdAt: Date;
+    updatedAt: Date | null;
+    deletedAt: Date | null;
 
     constructor(
-        id: number,
+        id: string,
         name: string,
         created_at: Date,
         updated_at: Date | null,
@@ -14,8 +14,8 @@ export class Category {
     ) {
         this.id = id;
         this.name = name;
-        this.created_at = created_at;
-        this.updated_at = updated_at;
-        this.deleted_at = deleted_at;
+        this.createdAt = created_at;
+        this.updatedAt = updated_at;
+        this.deletedAt = deleted_at;
     }
 }

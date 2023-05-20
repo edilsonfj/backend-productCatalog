@@ -5,12 +5,16 @@ export class Product {
     description: string;
     barcode: string;
     price: number;
-    promotion: number;
+    discount: number;
     stock: number;
-    image: string;
+    image1: string | null;
+    image2: string | null;
+    image3: string | null;
+    image4: string | null;
+    image5: string | null;
     createdAt: Date;
-    updatedAt: Date;
-    deletedAt: Date;
+    updatedAt: Date | null;
+    deletedAt: Date | null;
 
     constructor(
         id: string,
@@ -19,12 +23,16 @@ export class Product {
         description: string,
         barcode: string,
         price: number,
-        promotion: number,
+        discount: number,
         stock: number,
-        image: string,
+        image1: string | null,
+        image2: string | null,
+        image3: string | null,
+        image4: string | null,
+        image5: string | null,
         createdAt: Date,
-        updatedAt: Date,
-        DeletedAt: Date
+        updatedAt: Date | null,
+        DeletedAt: Date | null
     ) {
         this.id = id;
         this.category = category;
@@ -32,9 +40,13 @@ export class Product {
         this.description = description;
         this.barcode = barcode;
         this.price = price;
-        this.promotion = promotion;
+        this.discount = discount;
         this.stock = stock;
-        this.image = image;
+        this.image1 = image1;
+        this.image2 = image2;
+        this.image3 = image3;
+        this.image4 = image4;
+        this.image5 = image5;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
         this.deletedAt = DeletedAt;
