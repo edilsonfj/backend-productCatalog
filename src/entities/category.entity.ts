@@ -8,14 +8,14 @@ export class Category {
     constructor(
         id: string,
         name: string,
-        created_at: Date,
-        updated_at: Date | null,
-        deleted_at: Date | null
+        createdAt: Date,
+        updatedAt: Date | null,
+        deletedAt: Date | null
     ) {
         this.id = id;
         this.name = name;
-        this.createdAt = created_at;
-        this.updatedAt = updated_at;
-        this.deletedAt = deleted_at;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+        this.deletedAt = deletedAt;
     }
 }

@@ -1,9 +1,25 @@
 import { Product } from "../entities/product.entity";
 import { prisma } from "../database/prisma";
+import { v4 as uuid } from 'uuid';
+import { GenerateBarcode } from "../services/barcode.service";
 
 export class ProductRepository {
-    async createProduct(productData: Product): Promise<Product> {
-        return await prisma.product.create({ data: productData });
+    async createProduct(category: string, name: string, description: string, price: number, discount: number, stock: number): Promise<Product> {
+        return await prisma.product.create({
+            data: {
+                id: uuid(),
+                category: category,
+                name: name,
+                description: description,
+                barcode: GenerateBarcode(),
+                price: price,
+                discount: discount,
+                stock: stock,
+                createdAt: new Date(),
+                updatedAt: null,
+                deletedAt: null
+            }
+        });
     }
     async getAllProducts(): Promise<Product[]> {
         return await prisma.product.findMany({ where: { deletedAt: null } });

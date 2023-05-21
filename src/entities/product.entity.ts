@@ -2,6 +2,8 @@ export class Product {
     id: string;
     category: string;
     name: string;
+    brand: string;
+    model: string;
     description: string;
     barcode: string;
     price: number;
@@ -20,6 +22,8 @@ export class Product {
         id: string,
         category: string,
         name: string,
+        brand: string,
+        model: string,
         description: string,
         barcode: string,
         price: number,
@@ -37,6 +41,8 @@ export class Product {
         this.id = id;
         this.category = category;
         this.name = name;
+        this.brand = brand;
+        this.model = model;
         this.description = description;
         this.barcode = barcode;
         this.price = price;

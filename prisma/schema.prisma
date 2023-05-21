@@ -8,24 +8,28 @@ datasource db {
 }
 
 model Product {
-  id           String     @id
-  categoryName Category   @relation(fields: [category], references: [name])
-  category     String
-  name         String
-  description  String
-  barcode      String
-  price        Float
-  promotion    Promotion? @relation(fields: [discount], references: [discount])
-  discount     Int
-  stock        Int
-  image1       String?
-  image2       String?
-  image3       String?
-  image4       String?
-  image5       String?
-  createdAt    DateTime
-  updatedAt    DateTime?
-  deletedAt    DateTime?
+  id            String     @id
+  categoryName  Category   @relation(fields: [category], references: [name])
+  category      String
+  name          String     @unique
+  brandName     Brand      @relation(fields: [brand], references: [name])
+  brand         String
+  modelName     Model      @relation(fields: [model], references: [name])
+  model         String
+  description   String
+  barcode       Int
+  price         Float
+  promotionName Promotion? @relation(fields: [promotion], references: [name])
+  promotion     Int
+  stock         Int
+  image1        String?
+  image2        String?
+  image3        String?
+  image4        String?
+  image5        String?
+  createdAt     DateTime
+  updatedAt     DateTime?
+  deletedAt     DateTime?
 
   @@map("products")
 }
@@ -33,21 +37,45 @@ model Product {
 model Category {
   id        String    @id
   name      String    @unique
+  products  Product[]
   createdAt DateTime
   updatedAt DateTime?
   deletedAt DateTime?
-  products  Product[]
 
   @@map("categories")
 }
 
 model Promotion {
   id        String    @id
-  discount  Int       @unique
+  name      Int       @unique
+  products  Product[]
+  createdAt DateTime
+  deletedAt DateTime?
+
+  @@map("promotions")
+}
+
+model Brand {
+  id        String    @id
+  name      String    @unique
+  models    Model[]
+  products  Product[]
   createdAt DateTime
   updatedAt DateTime?
   deletedAt DateTime?
-  products  Product[]
 
-  @@map("promotions")
+  @@map("brands")
+}
+
+model Model {
+  id        String    @id
+  name      String    @unique
+  brandName Brand     @relation(fields: [brand], references: [name])
+  brand     String
+  products  Product[]
+  createdAt DateTime
+  updatedAt DateTime?
+  deletedAt DateTime?
+
+  @@map("models")
 }
